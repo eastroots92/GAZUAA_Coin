@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  coinname: MyString
+  price: MyString
+  user: one
+
+two:
+  category: MyString
+  coinname: MyString
+  price: MyString
+  user: two
