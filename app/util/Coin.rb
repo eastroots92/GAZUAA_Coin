@@ -12,18 +12,18 @@ class Coin
                 ["트론(TRON)" ,"C_tron"],
                 ["비트코인(BTC)" ,"C_btc"],
                 ["비트코인캐쉬(BCH)" ,"C_btc"],
-                ["비트코인골드(BTG)" ,"C_BTG"],
-                ["비트코인다이아(BCD)" ,"C_BCD"],
-                ["이더리움(ETH)", "C_ETH"],
-                ["이더리움클래식(ETC)" ,"C_ETC"],
-                ["카르다노(ADA)", "C_ADA"],
-                ["큐텀(QTUM)","C_QTUM"],
-                ["네오(NEO)","C_NEO"],
-                ["NeoGas(GAS)", "C_GAS"],
-                ["OmiseGO(OMG)" ,"C_OMG"],
-                ["윌튼(WTC)" ,"C_WTC"],
-                ["모나코(MCO)" ,"C_MCO"],
-                ["Ink(INK)" ,"C_INK"]
+                ["비트코인골드(BTG)" ,"C_btg"],
+                ["비트코인다이아(BCD)" ,"C_bcd"],
+                ["이더리움(ETH)", "C_eth"],
+                ["이더리움클래식(ETC)" ,"C_etc"],
+                ["카르다노(ADA)", "C_ada"],
+                ["큐텀(QTUM)","C_qtum"],
+                ["네오(NEO)","C_neo"],
+                ["NeoGas(GAS)", "C_gas"],
+                ["OmiseGO(OMG)" ,"C_omg"],
+                ["윌튼(WTC)" ,"C_wtc"],
+                ["모나코(MCO)" ,"C_mco"],
+                ["Ink(INK)" ,"C_ink"]
             ],
             'BITHUMB' => [
                 
@@ -39,13 +39,26 @@ class Coin
                 ["이더리움클래식(ETC)","B_ETC"],
                 ["퀀텀(QTUM)","B_QTUM"],
                 ["제트캐쉬(ZCASH)","B_ZCASH"]
+            ],
+            'UPBIT' => [
+                ["비트코인BTC/KRW","U_KRW-BTC"]  ,     
+                ["퀀텀QTUM/KRW","U_KRW-QTUM"],
+                ["리플XRP/KRW","U_KRW-XRP"],
+                ["아인스타이늄EMC2/KRW","U_KRW-EMC2"],
+                ["에이다ADA/KRW","U_KRW-ADA"],
+                ["스테이터스네트워크토큰SNT/KRW","U_KRW-SNT"],
+                ["이더리움클래식ETC/KRW","U_KRW-ETC"],
+                ["스텔라루멘XLM/KRW","U_KRW-XLM"],
+                ["라이트코인LTC/KRW","U_KRW-LTC"]
+              
             ]
+
         }
         return grouped_options
     end
 
     def self.coinnest_getdata(params)
-        puts 'params'
+        puts 'coinnest'
         puts params 
         if(params == nil)
             params =" "
@@ -55,17 +68,36 @@ class Coin
 
         data = open(url).read()
         result = JSON.parse(data)["last"]
-     #   tron_source = "https://api.coinnest.co.kr/api/pub/ticker?coin=tron"
-     #   data = open(tron_source).read()
-     #   @TRON = JSON.parse(data)["last"]
-        puts result
         
         return result
+    end
+    def self.upbit_getdata(params)
+        puts 'upbit'
+        puts params 
+        if(params == nil)
+            params =" "
+        end
+        url = "https://crix-api-endpoint.upbit.com/v1/crix/candles/days?code=CRIX.UPBIT."
+        url += params
+        puts url
+        data = open(url).read()
+
+        data = JSON.parse(data)
+        puts data.first["tradePrice"]
+        return data.first["tradePrice"]
+        
     end
 
     def self.coin_result(buy,now)
         
-        value = (now.to_f)/(buy.to_f)*100
+        value = (((now.to_f)/(buy.to_f))-1)*100
         return value.round(2)
+    end
+
+    def self.coin_price(deposit,price)
+
+        result = (deposit.to_f)+(deposit.to_f)*(price.to_f)/100.0
+
+        return result.round(2)
     end
 end

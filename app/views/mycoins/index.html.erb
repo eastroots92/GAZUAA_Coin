@@ -1,31 +1,77 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
-
-<h1>Mycoins</h1>
-
+<h1>사용시 주의사항</h1>
+<p>새로고침 빨리하면 에러납니다....나면 1분뒤에 새로고침 해주세요</p>
+<!-- Coinnest -->
+<h1>COINNEST</h1>
 <table>
   <thead>
     <tr>
       <th>코인이름</th>
       <th>산가격</th>
       <th>현재가격</th>
+      <th>입금금액</th>
+      <th>현재금액</th>
       <th>평가손익</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @mycoins.each do |mycoin| %>
-      <% 
-          now = Coin.coinnest_getdata(mycoin.coinname)
-          value = Coin.coin_result(mycoin.price,now)
-
-      %>
+    <% @coinnest.each do |mycoin| %>
       <tr>
+        <% 
+          if(mycoin.category=="C")
+            now = Coin.coinnest_getdata(mycoin.coinname)
+          end
+           
+            value = Coin.coin_result(mycoin.price,now)
+        %>
         <td><%= mycoin.coinname %></td>
         <td><%= mycoin.price %></td>
         <td><%= now %></td>
-        <td id="value"><%= value %></td>
+        
+        <td><%= mycoin.deposit%></td>
+
+        <td><%= Coin.coin_price(mycoin.deposit,value)%></td>
+        <td class="value"><%= value %>%</td>
+        <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td>
+        <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>UPBIT</h1>
+<table>
+  <thead>
+    <tr>
+      <th>코인이름</th>
+      <th>산가격</th>
+      <th>현재가격</th>
+      <th>입금금액</th>
+      <th>현재금액</th>
+      <th>평가손익</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @upbit.each do |mycoin| %>
+      <tr>
+        <% 
+          if(mycoin.category=="U")
+            now = Coin.upbit_getdata(mycoin.coinname)
+          end
+            value = Coin.coin_result(mycoin.price,now)
+        %>
+        <td><%= mycoin.coinname %></td>
+        <td><%= mycoin.price %></td>
+        <td><%= now %></td>
+        <td><%= mycoin.deposit %></td>
+
+        <td><%= Coin.coin_price(mycoin.deposit,value)%></td>
+        <td class="value"><%= value %>%</td>
         <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td>
         <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -37,8 +83,24 @@
 
 <%= link_to 'New Mycoin', new_mycoin_path %>
 </div>
+<style>
+#value{
+  color:black;
+}
+</style>
 
 <script>
- if($("#value")[0].innerHTML)
+  $( document ).ready(function() {
+    result =$(".value");
 
+    for(i=0;i<result.length;i++){
+     if(result[i].innerHTML[0] == "-"){
+       console.log(result[i].innerHTML)
+       result[i].style.color ="blue";
+     }
+     else{
+        result[i].style.color ="red";
+     }
+    }
+  });
 </script>

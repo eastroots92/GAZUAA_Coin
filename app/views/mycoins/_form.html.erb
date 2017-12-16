@@ -46,6 +46,10 @@
     <%= form.text_field :price, id: :mycoin_price %>
   </div>
   <div class="field">
+    <%= form.label :deposit %>
+    <%= form.text_field :deposit, id: :mycoin_deposit %>
+  </div>
+  <div class="field">
     <%= form.label :user_id %>
     <%= form.hidden_field :user_id, id: :mycoin_user_id, value: current_user.id %>
   </div>

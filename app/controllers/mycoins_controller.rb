@@ -5,7 +5,8 @@ class MycoinsController < ApplicationController
   # GET /mycoins
   # GET /mycoins.json
   def index
-    @mycoins = Mycoin.all
+    @coinnest = Mycoin.where(category: "C")
+    @upbit = Mycoin.where(category: "U")
   end
 
   # GET /mycoins/1
@@ -73,6 +74,6 @@ class MycoinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mycoin_params
-      params.require(:mycoin).permit(:category, :coinname, :price, :user_id)
+      params.require(:mycoin).permit(:category, :coinname, :price, :user_id,:deposit)
     end
 end
