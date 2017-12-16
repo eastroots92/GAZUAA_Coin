@@ -10,25 +10,44 @@
       </ul>
     </div>
   <% end %>
+  <%= form.select :category,Coin.coinnest, include_blank: true %>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category, id: :mycoin_category %>
-  </div>
+  <!-- <select id: :mycoin_category>
+      <optgroup label="BITHUMB">
+        <option value="B_BTC">비트코인</option>
+        <option value="B_ETC">이더리움</option>
+        <option value="B_XRP">리플</option>
+        <option value="B_BCH">비트코인 캐시</option>
+        <option value="B_LTC">라이트코인</option>
+        <option value="B_DASH">대시</option>
+      </optgroup>
+      <optgroup label="COINNEST">
+        <option value="C_BTC">비트코인</option>
+        <option value="C_ETC">이더리움</option>
+        <option value="C_TSL">에너고</option>
+        <option value="C_TRON">트론</option>
+        <option value="C_KNC">카이버</option>
+        <option value="C_INK">잉크</option>
+      </optgroup>
+    </select> -->
 
-  <div class="field">
-    <%= form.label :coinname %>
-    <%= form.text_field :coinname, id: :mycoin_coinname %>
-  </div>
+  <!-- <div class="field"> -->
+    <!-- <%= form.label :category %> -->
+    <!-- <%= form.text_field :category, id: :mycoin_category %> -->
+  <!-- </div> -->
+
+  <!-- <div class="field"> -->
+    <!-- <%= form.label :coinname %> -->
+    <!-- <%= form.text_field :coinname, id: :mycoin_coinname %> -->
+  <!-- </div> -->
 
   <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price, id: :mycoin_price %>
   </div>
-
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :mycoin_user_id %>
+    <%= form.hidden_field :user_id, id: :mycoin_user_id, value: current_user.id %>
   </div>
 
   <div class="actions">

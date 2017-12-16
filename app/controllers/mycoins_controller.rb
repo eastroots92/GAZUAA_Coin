@@ -1,3 +1,4 @@
+require 'Coin'
 class MycoinsController < ApplicationController
   before_action :set_mycoin, only: [:show, :edit, :update, :destroy]
 
@@ -25,7 +26,10 @@ class MycoinsController < ApplicationController
   # POST /mycoins.json
   def create
     @mycoin = Mycoin.new(mycoin_params)
-
+    token =  @mycoin.category.split("_")
+    @mycoin.category = token[0]
+    @mycoin.coinname = token[1]
+    
     respond_to do |format|
       if @mycoin.save
         format.html { redirect_to @mycoin, notice: 'Mycoin was successfully created.' }

@@ -14,29 +14,31 @@
     <p><%= @upbit_xrp %></p>
     <select>
       <optgroup label="BITHUMB">
-        <option value="BTC">비트코인</option>
-        <option value="ETC">이더리움</option>
-        <option value="XRP">리플</option>
-        <option value="BCH">비트코인 캐시</option>
-        <option value="LTC">라이트코인</option>
-        <option value="DASH">대시</option>
+        <option value="B_BTC">비트코인</option>
+        <option value="B_ETC">이더리움</option>
+        <option value="B_XRP">리플</option>
+        <option value="B_BCH">비트코인 캐시</option>
+        <option value="B_LTC">라이트코인</option>
+        <option value="B_DASH">대시</option>
       </optgroup>
       <optgroup label="COINNEST">
-        <option value="BTC">비트코인</option>
-        <option value="ETC">이더리움</option>
-        <option value="TSL">에너고</option>
-        <option value="TRON">트론</option>
-        <option value="KNC">카이버</option>
-        <option value="INK">잉크</option>
+        <option value="C_BTC">비트코인</option>
+        <option value="C_ETC">이더리움</option>
+        <option value="C_TSL">에너고</option>
+        <option value="C_TRON">트론</option>
+        <option value="C_KNC">카이버</option>
+        <option value="C_INK">잉크</option>
       </optgroup>
     </select>
     
+    <a href="/mycoins/new">내 코인 등록하기</a>
     <button id="yochung">욫엉ㅇ!!!</button>
     </div>
     <script>
     // 버튼 누르면 노팊파이 체크
     $("#yochung").click(function(){
-      alert("check");
+      //alert("check");
+      notifyMe();
     })
     // 알림 주기 설정
     //    setInterval( function () {
