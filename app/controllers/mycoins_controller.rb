@@ -1,10 +1,12 @@
+require 'Coin'
 class MycoinsController < ApplicationController
   before_action :set_mycoin, only: [:show, :edit, :update, :destroy]
 
   # GET /mycoins
   # GET /mycoins.json
   def index
-    @mycoins = Mycoin.all
+    @coinnest = Mycoin.where(category: "C")
+    @upbit = Mycoin.where(category: "U")
   end
 
   # GET /mycoins/1
@@ -25,7 +27,10 @@ class MycoinsController < ApplicationController
   # POST /mycoins.json
   def create
     @mycoin = Mycoin.new(mycoin_params)
-
+    token =  @mycoin.category.split("_")
+    @mycoin.category = token[0]
+    @mycoin.coinname = token[1]
+    
     respond_to do |format|
       if @mycoin.save
         format.html { redirect_to @mycoin, notice: 'Mycoin was successfully created.' }
@@ -69,6 +74,6 @@ class MycoinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mycoin_params
-      params.require(:mycoin).permit(:category, :coinname, :price, :user_id)
+      params.require(:mycoin).permit(:category, :coinname, :price, :user_id,:deposit)
     end
 end

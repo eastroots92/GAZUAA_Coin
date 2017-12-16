@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20171216012143) do
     t.string "category"
     t.string "coinname"
     t.string "price"
+    t.string "deposit"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
