@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @mycoin.category %>
+</p>
+
+<p>
+  <strong>Coinname:</strong>
+  <%= @mycoin.coinname %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @mycoin.price %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @mycoin.user %>
+</p>
+
+<%= link_to 'Edit', edit_mycoin_path(@mycoin) %> |
+<%= link_to 'Back', mycoins_path %>

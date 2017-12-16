@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mycoins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Coinname</th>
+      <th>Price</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mycoins.each do |mycoin| %>
+      <tr>
+        <td><%= mycoin.category %></td>
+        <td><%= mycoin.coinname %></td>
+        <td><%= mycoin.price %></td>
+        <td><%= mycoin.user %></td>
+        <td><%= link_to 'Show', mycoin %></td>
+        <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td>
+        <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mycoin', new_mycoin_path %>

@@ -1,0 +1,86 @@
+<div class="container">
+    <h1>코네코네코네~~~ </h1>
+    
+    <h2>에너고</h2>
+    <p><%= @TSL%></p>
+    <h2>카이버</h2>
+    <p><%=@KNC%></p>
+    <h2>트론</h2>
+    <p><%=@TRON%></p>
+    
+    <h1>업빗 업빗 업빗</h1>
+    
+    <h2>리플</h2>
+    <p><%= @upbit_xrp %></p>
+    <select>
+      <optgroup label="BITHUMB">
+        <option value="BTC">비트코인</option>
+        <option value="ETC">이더리움</option>
+        <option value="XRP">리플</option>
+        <option value="BCH">비트코인 캐시</option>
+        <option value="LTC">라이트코인</option>
+        <option value="DASH">대시</option>
+      </optgroup>
+      <optgroup label="COINNEST">
+        <option value="BTC">비트코인</option>
+        <option value="ETC">이더리움</option>
+        <option value="TSL">에너고</option>
+        <option value="TRON">트론</option>
+        <option value="KNC">카이버</option>
+        <option value="INK">잉크</option>
+      </optgroup>
+    </select>
+    
+    <button id="yochung">욫엉ㅇ!!!</button>
+    </div>
+    <script>
+    // 버튼 누르면 노팊파이 체크
+    $("#yochung").click(function(){
+      alert("check");
+    })
+    // 알림 주기 설정
+    //    setInterval( function () {
+    //        location.reload();
+    //        console.log("hihi")
+    //    }, 10000 );
+    function notifyMe() {
+      // Let's check if the browser supports notifications
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      }
+    
+      // Let's check whether notification permissions have already been granted
+      else if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        var msg={
+            body: "예양 ㄱ요청이 들어왓습니다"
+        }
+        var notification = new Notification("예약 요청이 들어왔습니다", msg);
+      }
+    
+      // Otherwise, we need to ask the user for permission
+      else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          // If the user accepts, let's create a notification
+          if (permission === "granted") {
+            var notification = new Notification("Hi there!");
+          }
+        });
+      }
+    
+      // At last, if the user has denied notifications, and you 
+      // want to be respectful there is no need to bother them any more.
+    } Notification.requestPermission().then(function(result) {
+      console.log(result,"hihi");
+    });
+    
+    function spawnNotification(theBody,theIcon,theTitle) {
+      var options = {
+          body: theBody,
+          icon: theIcon
+      }
+      console.log(theBody,theIcon,theTitle);
+      var n = new Notification(theTitle,options);
+    }
+    </script>
+    
