@@ -4,16 +4,17 @@
 <p>새로고침 빨리하면 에러납니다....나면 1분뒤에 새로고침 해주세요</p>
 <p>현재금액 가격이 잘못 나올 경우가 있습니다. 이점 유의해주세요 </p>
 <!-- Coinnest -->
-<h3>COINNEST</h3>
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp
 ">
   <thead>
     <tr>
+      <th class="mdl-data-table__cell--non-numeric">카테고리</th>
       <th class="mdl-data-table__cell--non-numeric">코인이름</th>
       <th class="mdl-data-table__cell--non-numeric">산가격</th>
       <th class="mdl-data-table__cell--non-numeric">현재가격</th>
       <th class="mdl-data-table__cell--non-numeric">입금금액</th>
       <th class="mdl-data-table__cell--non-numeric">현재금액</th>
+      <th class="mdl-data-table__cell--non-numeric">현재금액-입금금액</th>
       <th class="mdl-data-table__cell--non-numeric">평가손익</th>
       <th colspan="3"></th>
     </tr>
@@ -24,78 +25,106 @@
       <tr>
         <% 
           if(mycoin.category=="C")
-            now = Coin.coinnest_getdata(mycoin.coinname)
+            # 현재 코인 가격 
+            now_coin = Coin.coinnest_getdata(mycoin.coinname)
           end
-           
-            value = Coin.coin_result(mycoin.price,now)
+          # 가격 수익률
+          value = Coin.coin_result(mycoin.price,now_coin)
+          # 현재가격-입금가격
+          now_deposit = Coin.coin_price(mycoin.deposit,value)
         %>
+        <td class="mdl-data-table__cell--non-numeric">COINNEST</td>
         <td class="mdl-data-table__cell--non-numeric"><%= mycoin.coinname %></td>
-        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %></td>
-        <td class="mdl-data-table__cell--non-numeric"><%= now %></td>
-        
-        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.deposit%></td>
-
-        <td class="mdl-data-table__cell--non-numeric coin_price"><%= Coin.coin_price(mycoin.deposit,value)%></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= number_with_delimiter(mycoin.price)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= number_with_delimiter(now_coin) %>원</td>
+        <td class="mdl-data-table__cell--non-numeric deposit_price"><%= number_with_delimiter(mycoin.deposit)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric coin_price"><%= number_with_delimiter(now_deposit)%>원</td>
+        <!-- 현재-입금 : 순익 -->
+        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_f - mycoin.price.to_f) %>원</td>
+        <!-- 평가손익 -->
         <td class="mdl-data-table__cell--non-numeric value"><%= value %>%</td>
         <!-- <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
         <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-
-<h3>UPBIT</h3>
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-  <thead>
-    <tr>
-      <th class="mdl-data-table__cell--non-numeric">코인이름</th>
-      <th class="mdl-data-table__cell--non-numeric">산가격</th>
-      <th class="mdl-data-table__cell--non-numeric">현재가격</th>
-      <th class="mdl-data-table__cell--non-numeric">입금금액</th>
-      <th class="mdl-data-table__cell--non-numeric">현재금액</th>
-      <th class="mdl-data-table__cell--non-numeric">평가손익</th>
-      <th class="mdl-data-table__cell--non-numeric"colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+    <!-- UPBIT -->
     <% @upbit.each do |mycoin| %>
       <tr class="mdl-data-table__cell--non-numeric">
         <% 
           if(mycoin.category=="U")
-            now = Coin.upbit_getdata(mycoin.coinname)
+            now_coin = Coin.upbit_getdata(mycoin.coinname)
           end
-            value = Coin.coin_result(mycoin.price,now)
+          # 가격 수익률
+          value = Coin.coin_result(mycoin.price,now_coin)
+          # 현재가격-입금가격
+          now_deposit = Coin.coin_price(mycoin.deposit,value)
         %>
+        <td class="mdl-data-table__cell--non-numeric">UPBIT</td>
         <td class="mdl-data-table__cell--non-numeric"><%= mycoin.coinname %></td>
-        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %></td>
-        <td class="mdl-data-table__cell--non-numeric"><%= now %></td>
-        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.deposit %></td>
-
-        <td class="mdl-data-table__cell--non-numeric coin_price"><%= Coin.coin_price(mycoin.deposit,value)%></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %>원</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= number_with_delimiter(now_coin) %>원</td>
+        <td class="mdl-data-table__cell--non-numeric deposit_price"><%= number_with_delimiter(mycoin.deposit)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric coin_price"><%= number_with_delimiter(now_deposit) %>원</td>
+        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_f - mycoin.price.to_f)%>원</td>
         <td class="mdl-data-table__cell--non-numeric value" ><%= value %>%</td>
-        <!-- <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<h4 id="total"></h4>
+ <!-- <td><%# link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
+<div class="result">
+ <ul class="demo-list-item mdl-list total">
+    <li class="mdl-list__item">
+      <span id="total"class="mdl-list__item-primary-content ">
+        
+      </span>
+    </li>
+    <li class="mdl-list__item">
+      <span id="deposit" class="mdl-list__item-primary-content ">
+       
+      </span>
+    </li>
+    <li class="mdl-list__item">
+      <span id="result"class="mdl-list__item-primary-content ">
+        
+      </span>
+    </li>
+    <li class="mdl-list__item">
+      <span id="total_per"class="mdl-list__item-primary-content">
+        
+      </span>
+    </li>
+  </ul>
+</div>
 <br>
 
-<%= link_to 'New Mycoin', new_mycoin_path %>
+<%= link_to 'New Mycoin', new_mycoin_path ,class: "mdl-button mdl-js-button"%>
 </div>
 <style>
+table{
+  width: 100%;
+}
+span{
+  display: flex;
+  justify-content: flex-end;
+}
+.result{
+  display: flex;
+  justify-content: flex-end;
+}
 #value{
   color:black;
+}
+.total{
+  text-align: right;
 }
 </style>
 
 <script>
   $( document ).ready(function() {
+    // 수익률 + 면 빨간글씨, - 면 파란글씨 
     result =$(".value");
-
     for(i=0;i<result.length;i++){
      if(result[i].innerHTML[0] == "-"){
        console.log(result[i].innerHTML)
@@ -105,18 +134,44 @@
         result[i].style.color ="red";
      }
     }
-
+    // 현재 금액 총 토탈 값
     coin_price =$(".coin_price");
-    sum = 0 ;
-    for(i = 0 ; i <coin_price.length;i++){
-      sum += parseInt(coin_price[i].innerHTML);
+    total = numberWithCommas(total_value(coin_price));
+    $("#total")[0].innerHTML= "total price: "+ total+"원";
+
+    deposit_price = $(".deposit_price")
+    deposit = numberWithCommas(total_value(deposit_price));
+    $("#deposit")[0].innerHTML= "입금금액: "+deposit+"원";
+    // 토탈 - 입금 : 수익 
+    result = numberWithCommas(numberWithoutCommas(total)-numberWithoutCommas(deposit));
+    $("#result")[0].innerHTML= "순수익: "+result+"원";
+
+    // 순수익
+    total_per = $("#total_per")[0];
+    console.log(total_per);
+    total_per.innerHTML = ((numberWithoutCommas(total)/numberWithoutCommas(deposit)-1)*100).toFixed(2)+"%";
+    if(total_per.innerHTML[0] == "-"){
+      total_per.style.color ="blue";
     }
-    result = "total price  -> " +numberWithCommas(sum);
-    console.log($("#total")[0])
-    $("#total")[0].innerHTML= result;
+    else{
+      total_per.style.color ="red";
+    }
+    total_per.innerHTML="수익률: "+total_per.innerHTML;
+
 
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    function total_value(params){
+      sum = 0 ;
+      for(i = 0 ; i <params.length;i++){
+        console.log(numberWithoutCommas(params[i].innerHTML.slice(0,-1)));
+        sum += parseInt(numberWithoutCommas(params[i].innerHTML.slice(0,-1)));
+      }
+      return sum;
+    }
+    function numberWithoutCommas(x){
+      return parseInt(x.replace(/,/g,""));
     }
   
   });
