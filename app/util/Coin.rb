@@ -25,21 +25,6 @@ class Coin
                 ["모나코(MCO)" ,"C_mco"],
                 ["Ink(INK)" ,"C_ink"]
             ],
-            'BITHUMB' => [
-                
-                ["비트코인(BTC)", "B_BTC"],
-                ["이더리움(ETH)", "B_ETH"],
-                ["비트캐쉬(BCH)", "B_BCH"],
-                ["리플(XRP)", "B_XRP"],
-                ["라이트코인(LTC)","B_LTC"],
-                ["대시(DASH)","B_DASH"],
-                ["비트골드(BTG)","B_BTG"],
-                ["모네로(XMR)","B_XMR"],
-                ["이오스(EOC)","B_EOC"],
-                ["이더리움클래식(ETC)","B_ETC"],
-                ["퀀텀(QTUM)","B_QTUM"],
-                ["제트캐쉬(ZCASH)","B_ZCASH"]
-            ],
             'UPBIT' => [
                 ["비트코인BTC/KRW","U_KRW-BTC"]  ,     
                 ["퀀텀QTUM/KRW","U_KRW-QTUM"],
@@ -54,6 +39,25 @@ class Coin
             ]
 
         }
+       
+       
+    #    'BITHUMB' => [
+    #            
+    #        ["비트코인(BTC)", "B_BTC"],
+    #        ["이더리움(ETH)", "B_ETH"],
+    #        ["비트캐쉬(BCH)", "B_BCH"],
+    #        ["리플(XRP)", "B_XRP"],
+    #        ["라이트코인(LTC)","B_LTC"],
+    #        ["대시(DASH)","B_DASH"],
+    #        ["비트골드(BTG)","B_BTG"],
+    #        ["모네로(XMR)","B_XMR"],
+    #        ["이오스(EOC)","B_EOC"],
+    #        ["이더리움클래식(ETC)","B_ETC"],
+    #        ["퀀텀(QTUM)","B_QTUM"],
+    #        ["제트캐쉬(ZCASH)","B_ZCASH"]
+    #    ],
+        
+
         return grouped_options
     end
 
