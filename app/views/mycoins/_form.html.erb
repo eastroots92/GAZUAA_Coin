@@ -18,15 +18,14 @@
   </select>
 
   <div class="field">
-    <%= form.label :price %>
+    <%= form.label "매수 금액을 적어주세요 ex) 38860,35 " %>
     <%= form.text_field :price, id: :mycoin_price %>
   </div>
   <div class="field">
-    <%= form.label :deposit %>
+    <%= form.label "입금 금액을 적어주세요 " %>
     <%= form.text_field :deposit, id: :mycoin_deposit %>
   </div>
   <div class="field">
-    <%= form.label :user_id %>
     <%= form.hidden_field :user_id, id: :mycoin_user_id, value: current_user.id %>
   </div>
 
