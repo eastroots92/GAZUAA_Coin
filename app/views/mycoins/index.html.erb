@@ -1,18 +1,19 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
-<h1>사용시 주의사항</h1>
+<h4>사용시 주의사항</h4>
 <p>새로고침 빨리하면 에러납니다....나면 1분뒤에 새로고침 해주세요</p>
 <!-- Coinnest -->
-<h1>COINNEST</h1>
-<table>
+<h3>COINNEST</h3>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp
+">
   <thead>
     <tr>
-      <th>코인이름</th>
-      <th>산가격</th>
-      <th>현재가격</th>
-      <th>입금금액</th>
-      <th>현재금액</th>
-      <th>평가손익</th>
+      <th class="mdl-data-table__cell--non-numeric">코인이름</th>
+      <th class="mdl-data-table__cell--non-numeric">산가격</th>
+      <th class="mdl-data-table__cell--non-numeric">현재가격</th>
+      <th class="mdl-data-table__cell--non-numeric">입금금액</th>
+      <th class="mdl-data-table__cell--non-numeric">현재금액</th>
+      <th class="mdl-data-table__cell--non-numeric">평가손익</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -35,45 +36,45 @@
 
         <td><%= Coin.coin_price(mycoin.deposit,value)%></td>
         <td class="value"><%= value %>%</td>
-        <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td>
+        <!-- <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
         <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<h1>UPBIT</h1>
-<table>
+<h3>UPBIT</h3>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
   <thead>
     <tr>
-      <th>코인이름</th>
-      <th>산가격</th>
-      <th>현재가격</th>
-      <th>입금금액</th>
-      <th>현재금액</th>
-      <th>평가손익</th>
-      <th colspan="3"></th>
+      <th class="mdl-data-table__cell--non-numeric">코인이름</th>
+      <th class="mdl-data-table__cell--non-numeric">산가격</th>
+      <th class="mdl-data-table__cell--non-numeric">현재가격</th>
+      <th class="mdl-data-table__cell--non-numeric">입금금액</th>
+      <th class="mdl-data-table__cell--non-numeric">현재금액</th>
+      <th class="mdl-data-table__cell--non-numeric">평가손익</th>
+      <th class="mdl-data-table__cell--non-numeric"colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @upbit.each do |mycoin| %>
-      <tr>
+      <tr class="mdl-data-table__cell--non-numeric">
         <% 
           if(mycoin.category=="U")
             now = Coin.upbit_getdata(mycoin.coinname)
           end
             value = Coin.coin_result(mycoin.price,now)
         %>
-        <td><%= mycoin.coinname %></td>
-        <td><%= mycoin.price %></td>
-        <td><%= now %></td>
-        <td><%= mycoin.deposit %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.coinname %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= now %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.deposit %></td>
 
-        <td><%= Coin.coin_price(mycoin.deposit,value)%></td>
-        <td class="value"><%= value %>%</td>
-        <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td>
-        <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= Coin.coin_price(mycoin.deposit,value)%></td>
+        <td class="mdl-data-table__cell--non-numeric value" ><%= value %>%</td>
+        <!-- <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

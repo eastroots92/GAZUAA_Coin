@@ -1,88 +1,30 @@
 <div class="container">
-    <h1>코네코네코네~~~ </h1>
+  <h3>ZONBERCOIN - 존버하는 당신에게</h3>
+   
+  <h5>
+     코인을 하다보니..
+     <strong>빗썸</strong> 에 없는 코인을 찾아...<br>
+     <strong>업비트</strong>에도....
+     <strong>코인네스트</strong>에도... <br>
+     만드니 한번에 ..보기가 불편해서 만들어봤습니다!<br>
+  </h5>
+ 
+  <p> 간단한 알림 추가 업데이트 할 예정입니다 </p>
+  <p> 하루동안 날치기로 만든거라 주말에 시간될때마다 짬짬히 고치겠습니다</p>
+  <p> 로그인은 이메일과 비밀번호를 넣지만 그냥 정보저장용이니 아무렇게나 사용하세용</p>
+
+  <h3>주의사항</h3>
+  <p>api를 받아오기때문에 서버가 터지면 여기도 터집니다</p>
+  <p> 새로고침을 너무 많이 하면 에러나기 때문에 터지면 1분있다 새로고침해주세요</p>
+  <h4><strong> 매수한가격,넣은 금액을 직접 입력하는 방식이기때문에 일주일~이주일 장투하시는분들 사용하세요</strong></h4>
+
+  <% unless(user_signed_in?) %>
+    <a href="/users/sign_in">로그인하기</a>
+    <a href="/users/sign_up">회원가입하기</a>
+  <% else %>
+    <a href="/mycoins">내 코인 보러가기</a>
     
-    <h2>에너고</h2>
-    <p><%= @TSL%></p>
-    <h2>카이버</h2>
-    <p><%=@KNC%></p>
-    <h2>트론</h2>
-    <p><%=@TRON%></p>
-    
-    <h1>업빗 업빗 업빗</h1>
-    
-    <h2>리플</h2>
-    <p><%= @upbit_xrp %></p>
-    <select>
-      <optgroup label="BITHUMB">
-        <option value="B_BTC">비트코인</option>
-        <option value="B_ETC">이더리움</option>
-        <option value="B_XRP">리플</option>
-        <option value="B_BCH">비트코인 캐시</option>
-        <option value="B_LTC">라이트코인</option>
-        <option value="B_DASH">대시</option>
-      </optgroup>
-      <optgroup label="COINNEST">
-        <option value="C_BTC">비트코인</option>
-        <option value="C_ETC">이더리움</option>
-        <option value="C_TSL">에너고</option>
-        <option value="C_TRON">트론</option>
-        <option value="C_KNC">카이버</option>
-        <option value="C_INK">잉크</option>
-      </optgroup>
-    </select>
-    
-    <a href="/mycoins/new">내 코인 등록하기</a>
-    <button id="yochung">욫엉ㅇ!!!</button>
-    </div>
-    <script>
-    // 버튼 누르면 노팊파이 체크
-    $("#yochung").click(function(){
-      //alert("check");
-      notifyMe();
-    })
-    // 알림 주기 설정
-    //    setInterval( function () {
-    //        location.reload();
-    //        console.log("hihi")
-    //    }, 10000 );
-    function notifyMe() {
-      // Let's check if the browser supports notifications
-      if (!("Notification" in window)) {
-        alert("This browser does not support desktop notification");
-      }
-    
-      // Let's check whether notification permissions have already been granted
-      else if (Notification.permission === "granted") {
-        // If it's okay let's create a notification
-        var msg={
-            body: "예양 ㄱ요청이 들어왓습니다"
-        }
-        var notification = new Notification("예약 요청이 들어왔습니다", msg);
-      }
-    
-      // Otherwise, we need to ask the user for permission
-      else if (Notification.permission !== 'denied') {
-        Notification.requestPermission(function (permission) {
-          // If the user accepts, let's create a notification
-          if (permission === "granted") {
-            var notification = new Notification("Hi there!");
-          }
-        });
-      }
-    
-      // At last, if the user has denied notifications, and you 
-      // want to be respectful there is no need to bother them any more.
-    } Notification.requestPermission().then(function(result) {
-      console.log(result,"hihi");
-    });
-    
-    function spawnNotification(theBody,theIcon,theTitle) {
-      var options = {
-          body: theBody,
-          icon: theIcon
-      }
-      console.log(theBody,theIcon,theTitle);
-      var n = new Notification(theTitle,options);
-    }
-    </script>
-    
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+  <% end %>
+  
+</div>
