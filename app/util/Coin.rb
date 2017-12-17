@@ -83,7 +83,7 @@ class Coin
         end
         url = "https://crix-api-endpoint.upbit.com/v1/crix/candles/days?code=CRIX.UPBIT."
         url += params
-        puts url
+        # puts url
         data = open(url).read()
 
         data = JSON.parse(data)
@@ -99,10 +99,10 @@ class Coin
     end
 
     def self.coin_price(deposit,price)
-        puts "coin_price"
-        puts deposit
-        puts price
-        puts ((deposit.to_f)*(price.to_f))*deposit.to_f/100.0
+        # puts "coin_price"
+        # puts deposit
+        # puts price
+        # puts ((deposit.to_f)*(price.to_f))*deposit.to_f/100.0
         result = (deposit.to_f)+((deposit.to_f)*(price.to_f))/100.0
         
         return result.round(2)
