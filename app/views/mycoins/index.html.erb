@@ -2,6 +2,7 @@
 <p id="notice"><%= notice %></p>
 <h4>사용시 주의사항</h4>
 <p>새로고침 빨리하면 에러납니다....나면 1분뒤에 새로고침 해주세요</p>
+<p>현재금액 가격이 잘못 나올 경우가 있습니다. 이점 유의해주세요 </p>
 <!-- Coinnest -->
 <h3>COINNEST</h3>
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp
@@ -28,14 +29,14 @@
            
             value = Coin.coin_result(mycoin.price,now)
         %>
-        <td><%= mycoin.coinname %></td>
-        <td><%= mycoin.price %></td>
-        <td><%= now %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.coinname %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= now %></td>
         
-        <td><%= mycoin.deposit%></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.deposit%></td>
 
-        <td><%= Coin.coin_price(mycoin.deposit,value)%></td>
-        <td class="value"><%= value %>%</td>
+        <td class="mdl-data-table__cell--non-numeric coin_price"><%= Coin.coin_price(mycoin.deposit,value)%></td>
+        <td class="mdl-data-table__cell--non-numeric value"><%= value %>%</td>
         <!-- <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
         <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -71,7 +72,7 @@
         <td class="mdl-data-table__cell--non-numeric"><%= now %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= mycoin.deposit %></td>
 
-        <td class="mdl-data-table__cell--non-numeric"><%= Coin.coin_price(mycoin.deposit,value)%></td>
+        <td class="mdl-data-table__cell--non-numeric coin_price"><%= Coin.coin_price(mycoin.deposit,value)%></td>
         <td class="mdl-data-table__cell--non-numeric value" ><%= value %>%</td>
         <!-- <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -102,6 +103,12 @@
      else{
         result[i].style.color ="red";
      }
+    }
+
+    coin_price =$(".coin_price");
+    sum = 0 ;
+    for(i = 0 ; i <coin_price.length;i++){
+      sum += coin_price[i].innerHTML;
     }
   });
 </script>
