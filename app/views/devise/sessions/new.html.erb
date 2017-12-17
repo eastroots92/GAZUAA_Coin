@@ -2,16 +2,18 @@
 <h2>로그인</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
+  <div class="form-inputs mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <%= f.input :email, required: false, autofocus: true,class: "mdl-textfield__input" %>
+    <%= f.input :password, required: false,class:  "mdl-textfield__input"%>
   
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Log in" %>
   </div>
+
 <% end %>
 
 <%= render "devise/shared/links" %>
 </div>
+

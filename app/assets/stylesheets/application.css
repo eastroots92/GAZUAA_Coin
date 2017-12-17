@@ -15,7 +15,6 @@
  */
 
 
-
 body{
     margin: 0px;
     padding: 0px;
@@ -34,7 +33,7 @@ header{
 div.container{
     max-width: 1000px;
     width: 100%;
-    margin: 0px auto;
+    margin: 100px auto;
     padding : 0px;
 }
 
@@ -59,7 +58,7 @@ span.left-nav{
     }
     div.container{
         width: 100%;
-        margin: 0px auto;
+        margin: 100px auto;
     }
 
 
