@@ -14,7 +14,7 @@
       <th class="mdl-data-table__cell--non-numeric">현재가격</th>
       <th class="mdl-data-table__cell--non-numeric">입금금액</th>
       <th class="mdl-data-table__cell--non-numeric">현재금액</th>
-      <th class="mdl-data-table__cell--non-numeric">현재금액-입금금액</th>
+      <th class="mdl-data-table__cell--non-numeric">차액(정수값)</th>
       <th class="mdl-data-table__cell--non-numeric">평가손익</th>
       <th colspan="3"></th>
     </tr>
@@ -39,7 +39,7 @@
         <td class="mdl-data-table__cell--non-numeric deposit_price"><%= number_with_delimiter(mycoin.deposit)%>원</td>
         <td class="mdl-data-table__cell--non-numeric coin_price"><%= number_with_delimiter(now_deposit)%>원</td>
         <!-- 현재-입금 : 순익 -->
-        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_f - mycoin.deposit.to_f) %>원 </td>
+        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_i - mycoin.deposit.to_i) %>원 </td>
         <!-- 평가손익 -->
         <td class="mdl-data-table__cell--non-numeric value"><%= value %>%</td>
         <!-- <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
@@ -64,7 +64,7 @@
         <td class="mdl-data-table__cell--non-numeric"><%= number_with_delimiter(now_coin) %>원</td>
         <td class="mdl-data-table__cell--non-numeric deposit_price"><%= number_with_delimiter(mycoin.deposit)%>원</td>
         <td class="mdl-data-table__cell--non-numeric coin_price"><%= number_with_delimiter(now_deposit) %>원</td>
-        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_f - mycoin.price.to_f)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_i - mycoin.deposit.to_i)%>원</td>
         <td class="mdl-data-table__cell--non-numeric value" ><%= value %>%</td>
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
