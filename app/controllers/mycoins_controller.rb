@@ -2,12 +2,26 @@ require 'Coin'
 class MycoinsController < ApplicationController
   before_action :set_mycoin, only: [:show, :edit, :update, :destroy]
   before_action :user_nil
+
+
+
+  def storechecking
+    @exchangeStore = params[:store]
+
+    case @exchangeStore      
+      when 'coinnest'
+        render :json => Coin.coinnest
+      when 'upbit'
+        render :json => Coin.upbit
+     end
+
+  end
  
   # GET /mycoins
   # GET /mycoins.json
   def index
-    @coinnest = Mycoin.where(user_id: current_user.id,category: "C")
-    @upbit = Mycoin.where(user_id: current_user.id,category: "U")
+    @coinnest = Mycoin.where(user_id: current_user.id,category: "coinnest")
+    @upbit = Mycoin.where(user_id: current_user.id,category: "upbit")
   end
 
   # GET /mycoins/1
@@ -28,9 +42,7 @@ class MycoinsController < ApplicationController
   # POST /mycoins.json
   def create
     @mycoin = Mycoin.new(mycoin_params)
-    token =  @mycoin.category.split("_")
-    @mycoin.category = token[0]
-    @mycoin.coinname = token[1]
+
     
     respond_to do |format|
       if @mycoin.save

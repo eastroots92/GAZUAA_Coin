@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'mycoins/storechecking'
   root 'home#index'
   resources :mycoins
   devise_for :users

@@ -10,7 +10,12 @@
       </ul>
     </div>
   <% end %>
-  <%= form.select :category,Coin.coinnest, include_blank: true %>
+  <!-- <%= form.select :category,Coin.coinnest, include_blank: true %> -->
+
+  <%= form.select :category, Coin.exchangeStore, include_blank: true %>
+  <select  name="mycoin[coinname]" id ="coinList">
+      <option value="a"> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>  
+  </select>
 
   <div class="field">
     <%= form.label :price %>
@@ -29,3 +34,48 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+
+
+<script>
+
+$(document).ready(function(){
+
+  $("select[name='mycoin[category]']").change(function(){
+    var exchangeStore = $("select[name='mycoin[category]']").val();
+    if (exchangeStore != ""){ 
+      getCoinList(exchangeStore);
+    }
+  });
+
+});
+  
+function getCoinList(exchangeStore){
+  select_exchangeStore = {"store": exchangeStore};
+  
+  $.ajax({
+    url: "/mycoins/storechecking",
+    type:"get",
+    dataType: "json",
+    data: select_exchangeStore,
+    success: function(data){
+      setCoinList(data);
+      $('#local').append(' <span class="caret"></span>');
+    }
+  })
+}
+
+function setCoinList(data){
+  $('select[name="mycoin[coinname]"]').empty();
+  for (index in data){
+
+    for( i in data[index]){
+
+        $('select[name="mycoin[coinname]"]').append('<option value="'+ data[index][i][1]+'">'+ data[index][i][0] + "</option>" );  
+    
+    }
+  }
+}
+
+
+</script>
