@@ -1,12 +1,13 @@
 require 'Coin'
 class MycoinsController < ApplicationController
   before_action :set_mycoin, only: [:show, :edit, :update, :destroy]
-
+  before_action :user_nil
+ 
   # GET /mycoins
   # GET /mycoins.json
   def index
-    @coinnest = Mycoin.where(category: "C")
-    @upbit = Mycoin.where(category: "U")
+    @coinnest = Mycoin.where(user_id: current_user.id,category: "C")
+    @upbit = Mycoin.where(user_id: current_user.id,category: "U")
   end
 
   # GET /mycoins/1
@@ -75,5 +76,12 @@ class MycoinsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def mycoin_params
       params.require(:mycoin).permit(:category, :coinname, :price, :user_id,:deposit)
+    end
+
+    def user_nil
+      puts user_signed_in?
+      unless(user_signed_in?)
+        redirect_to '/'
+      end
     end
 end
