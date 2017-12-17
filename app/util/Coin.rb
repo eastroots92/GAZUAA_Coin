@@ -89,15 +89,18 @@ class Coin
     end
 
     def self.coin_result(buy,now)
-        
+   
         value = (((now.to_f)/(buy.to_f))-1)*100
         return value.round(2)
     end
 
     def self.coin_price(deposit,price)
-
-        result = (deposit.to_f)+(deposit.to_f)*(price.to_f)/100.0
-
+        puts "coin_price"
+        puts deposit
+        puts price
+        puts ((deposit.to_f)*(price.to_f))*deposit.to_f/100.0
+        result = (deposit.to_f)+((deposit.to_f)*(price.to_f))/100.0
+        
         return result.round(2)
     end
 end
