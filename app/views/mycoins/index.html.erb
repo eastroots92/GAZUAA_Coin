@@ -23,7 +23,7 @@
     <% @coinnest.each do |mycoin| %>
       <tr>
         <% 
-          if(mycoin.category=="C")
+          if(mycoin.category=="coinnest")
             now = Coin.coinnest_getdata(mycoin.coinname)
           end
            
@@ -62,7 +62,7 @@
     <% @upbit.each do |mycoin| %>
       <tr class="mdl-data-table__cell--non-numeric">
         <% 
-          if(mycoin.category=="U")
+          if(mycoin.category=="upbit")
             now = Coin.upbit_getdata(mycoin.coinname)
           end
             value = Coin.coin_result(mycoin.price,now)
