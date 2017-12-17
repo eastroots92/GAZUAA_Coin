@@ -25,7 +25,7 @@
       <tr>
         <% 
           if(mycoin.category=="coinnest")
-            now = Coin.coinnest_getdata(mycoin.coinname)
+            now_coin = Coin.coinnest_getdata(mycoin.coinname)
           end
           # 가격 수익률
           value = Coin.coin_result(mycoin.price,now_coin)
@@ -51,7 +51,7 @@
       <tr class="mdl-data-table__cell--non-numeric">
         <% 
           if(mycoin.category=="upbit")
-            now = Coin.upbit_getdata(mycoin.coinname)
+          now_coin = Coin.upbit_getdata(mycoin.coinname)
           end
           # 가격 수익률
           value = Coin.coin_result(mycoin.price,now_coin)

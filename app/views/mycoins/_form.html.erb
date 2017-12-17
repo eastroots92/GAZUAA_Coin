@@ -12,28 +12,39 @@
   <% end %>
   <!-- <%= form.select :category,Coin.coinnest, include_blank: true %> -->
 
-  <%= form.select :category, Coin.exchangeStore, include_blank: true %>
-  <select  name="mycoin[coinname]" id ="coinList">
-      <option value="a"> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>  
-  </select>
-
-  <div class="field">
-    <%= form.label "매수 금액을 적어주세요 ex) 38860,35 " %>
-    <%= form.text_field :price, id: :mycoin_price %>
+  <div class="select_form">
+    <%= form.select :category, Coin.exchangeStore, include_blank: true %>
+    <select  name="mycoin[coinname]" id ="coinList">
+        <option value="a"> &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>  
+    </select>
   </div>
-  <div class="field">
-    <%= form.label "입금 금액을 적어주세요 " %>
-    <%= form.text_field :deposit, id: :mycoin_deposit %>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label field_block">
+    <%= form.label "매수 금액을 적어주세요 ex) 38860,35 ",class: "mdl-textfield__label" %>
+    <%= form.text_field :price, id: :mycoin_price,class: "mdl-textfield__input", pattern: "-?[0-9]*(\.[0-9]+)?" %>
+    <span class="mdl-textfield__error">Input is not a number!</span>
+  </div>
+  <div class="field mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <%= form.label "입금 금액을 적어주세요 ",class: "mdl-textfield__label" %>
+    <%= form.text_field :deposit, id: :mycoin_deposit,class: "mdl-textfield__input", pattern: "-?[0-9]*(\.[0-9]+)?" %>
+    <span class="mdl-textfield__error">Input is not a number!</span>
   </div>
   <div class="field">
     <%= form.hidden_field :user_id, id: :mycoin_user_id, value: current_user.id %>
   </div>
 
-  <div class="actions">
+  <div class="actions mdl-button mdl-js-button">
     <%= form.submit %>
   </div>
 <% end %>
+<style>
+.select_form{
+  margin: 10px;
 
+}
+.field_block{
+  display: block;
+}
+</style>
 
 
 <script>
