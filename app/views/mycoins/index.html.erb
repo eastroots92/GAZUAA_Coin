@@ -81,6 +81,7 @@
   </tbody>
 </table>
 
+<h4 id="total"></h4>
 <br>
 
 <%= link_to 'New Mycoin', new_mycoin_path %>
@@ -108,7 +109,18 @@
     coin_price =$(".coin_price");
     sum = 0 ;
     for(i = 0 ; i <coin_price.length;i++){
-      sum += coin_price[i].innerHTML;
+      sum += parseInt(coin_price[i].innerHTML);
     }
+    result = "total price  -> " +numberWithCommas(sum);
+    console.log($("#total")[0])
+    $("#total")[0].innerHTML= result;
+
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  
   });
+  
+
+
 </script>
