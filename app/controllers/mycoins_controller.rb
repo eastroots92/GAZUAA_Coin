@@ -4,7 +4,7 @@ class MycoinsController < ApplicationController
   before_action :user_nil
 
 
-
+  # 마켓 추가 설정
   def storechecking
     @exchangeStore = params[:store]
 
@@ -13,15 +13,19 @@ class MycoinsController < ApplicationController
         render :json => Coin.coinnest
       when 'upbit'
         render :json => Coin.upbit
+      when 'bithumb'
+        render :json => Coin.bithumb
      end
 
   end
  
   # GET /mycoins
   # GET /mycoins.json
+  # 마켓 추가 설정
   def index
     @coinnest = Mycoin.where(user_id: current_user.id,category: "coinnest")
     @upbit = Mycoin.where(user_id: current_user.id,category: "upbit")
+    @bithumb = Mycoin.where(user_id: current_user.id,category: "bithumb")
   end
 
   # GET /mycoins/1
