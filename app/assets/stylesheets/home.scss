@@ -1,3 +1,38 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+  .create_form{
+    padding: 15px 15px;
+    border-radius: 0.25rem;
+    display: flex;
+    flex: 1;
+    background-color: #c9c9c9;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .create_button{
+    width: 100%;
+    border-radius: 0.25rem;
+    background-color: #3F51B5;
+    color: white;
+    font-size: 0.25rem;
+    padding: 15px 15px;
+  }
+  .gz_margin{
+    margin: 5%;
+  }
+  .shared_link{
+    display: flex;
+    justify-content: space-between;
+  }
+     
+  .input_form{
+    width: 88%;
+    border-radius: 0.25rem;
+    padding: 15px 15px;
+    background-color: #fff;
+    border: 1px solid rgba(201, 201, 201, 0.5);
+    box-shadow: 1px 1px 1px rgba(117, 117, 117, 0.2);
+  }

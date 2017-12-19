@@ -76,6 +76,8 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.4.0)
+      devise (>= 3.1)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.7.0)
@@ -262,6 +264,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
+  devise-i18n
   figaro
   jbuilder (~> 2.5)
   jquery-rails
