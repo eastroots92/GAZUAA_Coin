@@ -42,7 +42,8 @@
         <!-- 평가손익 -->
         <td class="mdl-data-table__cell--non-numeric value"><%= value %>%</td>
         <!-- <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
-        <td><p class="delete">Destroy</p></td>
+        <!-- <td><p class="delete">Destroy</p></td> -->
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     <!-- UPBIT -->
