@@ -8,6 +8,7 @@ end
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.7'
 gem "figaro"
+gem 'devise-i18n'
 # Jquery
 gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

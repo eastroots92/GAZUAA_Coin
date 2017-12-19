@@ -1,5 +1,7 @@
-gem 'nokogiri'
-gem 'rest-client'
-url = "https://api.calq.io/Track"
+require 'json'
+require 'open-uri'
+#bittumb okay
+source = "https://api.bithumb.com/public/recent_transactions/etc"
 
-result = Nokogiri::HTML(open(url))
+data = JSON.parse(open(source).read())
+puts data["data"][0]["price"]

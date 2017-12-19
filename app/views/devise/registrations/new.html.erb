@@ -1,19 +1,36 @@
 <div class="container">
-<h2>회원가입</h2>
+  <div class="login_box">
+      <div class="gz_margin">
+          <h4>회원 가입</h4>
+      </div>
+      <div class="login_form">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              
+          <div class="input_box gz_margin">
+            <%= f.input :email, required: true, label: false,autofocus: true,:input_html => { :class => 'input_form',:placeholder => "email" } %>
+            <%= f.input :password, required: true,label: false, hint: ("#{@minimum_password_length} 자 이상 비밀번호를 입력해주세요" if @minimum_password_length),:input_html => { :class => 'input_form',:placeholder => "Password" }%>
+            <%= f.input :password_confirmation, label: false,required: true,:input_html => { :class => 'input_form',:placeholder => "password check"}  %>
+          </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+          <div class="form-actions gz_margin">
+            <%= f.button :submit, "Sign up",class: 'create_button' %>
+          </div>
+        <% end %>
+    </div>
+    <div class="shared_link ">
+    <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
 </div>
+
+<style>
+
+    .login_box{
+   
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+</style>

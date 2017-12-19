@@ -1,10 +1,9 @@
 <div class="container">
-<p id="notice"><%= notice %></p>
 <h4>사용시 주의사항</h4>
 <p>새로고침 빨리하면 에러납니다....나면 1분뒤에 새로고침 해주세요</p>
 <p>현재금액 가격이 잘못 나올 경우가 있습니다. 이점 유의해주세요 </p>
 <!-- Coinnest -->
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp
 ">
   <thead>
     <tr>
@@ -43,7 +42,7 @@
         <!-- 평가손익 -->
         <td class="mdl-data-table__cell--non-numeric value"><%= value %>%</td>
         <!-- <td><%= link_to 'Edit', edit_mycoin_path(mycoin) %></td> -->
-        <td><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><p class="delete">Destroy</p></td>
       </tr>
     <% end %>
     <!-- UPBIT -->
@@ -126,6 +125,9 @@
 </div>
 
 <style>
+.delete{
+  margin: 0;
+}
 table{
   width: 100%;
 }
@@ -199,7 +201,9 @@ span{
     }
   
   });
-  
 
+  $(".delete").click(function(){
+    alert("hi")
+  })
 
 </script>

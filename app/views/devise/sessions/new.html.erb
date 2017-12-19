@@ -1,19 +1,74 @@
 <div class="container">
-<h2>로그인</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <%= f.input :email, required: false, autofocus: true,class: "mdl-textfield__input" %>
-    <%= f.input :password, required: false,class:  "mdl-textfield__input"%>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <!-- login_box ::title,input,button -->
+      <div class="login_box">
+      <!-- Login title -->
+      <div class="gz_margin">
+        <h4>LOG IN GAZUAAA</h4>
+      </div>
+      <!-- login_form :: input,button  -->
+      <div class="login_form">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name),) do |f| %>
+          <div class="input_box gz_margin">
+              <%= f.text_field :email,
+                      required: false, 
+                      autofocus: true ,
+                      :class => 'input',
+                      placeholder: "email"
+                      %>
+              <%= f.password_field :password, 
+                        required: false ,
+                        placeholder: "password",
+                        :class => 'input'%>
+          </div>
+          <div class="form-actions gz_margin">	
+            <%=  f.submit "LOGIN" ,class: 'create_button'%>
+          </div>    
+        <% end %>
+          <div class="shared_link gz_margin">
+              <%= render "devise/shared/links" %>
+          </div>
+      </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-
-<% end %>
-
-<%= render "devise/shared/links" %>
 </div>
-
+  
+<style type="text/css">
+    .login_box{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    .input{
+      width: 88%;
+      border-radius: 0.25rem;
+      padding: 15px 15px;
+      background-color: #fff;
+      border: 1px solid rgba(201, 201, 201, 0.5);
+      box-shadow: 1px 1px 1px rgba(117, 117, 117, 0.2);
+    }
+    .create_form{
+      padding: 15px 15px;
+      border-radius: 0.25rem;
+      display: flex;
+      flex: 1;
+      background-color: #c9c9c9;
+      justify-content: center;
+      align-items: center;
+  
+    }
+    .create_button{
+      width: 100%;
+      border-radius: 0.25rem;
+      background-color: #3F51B5;
+      color: white;
+      font-size: 0.25rem;
+      padding: 15px 15px;
+    }
+    .gz_margin{
+      margin: 5%;
+    }
+    .shared_link{
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
