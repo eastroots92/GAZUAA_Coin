@@ -13,8 +13,12 @@ class MycoinsController < ApplicationController
         render :json => Coin.coinnest
       when 'upbit'
         render :json => Coin.upbit
+      when 'upbit_btc'
+        render :json => Coin.upbit_btc
       when 'bithumb'
         render :json => Coin.bithumb
+      when 'coinone'
+        render :json => Coin.coinone
      end
 
   end
@@ -25,7 +29,9 @@ class MycoinsController < ApplicationController
   def index
     @coinnest = Mycoin.where(user_id: current_user.id,category: "coinnest")
     @upbit = Mycoin.where(user_id: current_user.id,category: "upbit")
+    @upbit_btc = Mycoin.where(user_id: current_user.id,category: "upbit_btc")
     @bithumb = Mycoin.where(user_id: current_user.id,category: "bithumb")
+    @coinone = Mycoin.where(user_id: current_user.id,category: "coinone")
   end
 
   # GET /mycoins/1

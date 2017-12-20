@@ -69,6 +69,28 @@
         <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <% @upbit_btc.each do |mycoin| %>
+      <tr class="mdl-data-table__cell--non-numeric">
+        <% 
+          if(mycoin.category=="upbit_btc")
+          now_coin = Coin.upbit_getdata(mycoin.coinname)
+          end
+          # 가격 수익률
+          value = Coin.coin_result(mycoin.price,now_coin)
+          # 현재가격-입금가격
+          now_deposit = Coin.coin_price(mycoin.deposit,value)
+        %>
+        <td class="mdl-data-table__cell--non-numeric">UPBIT_BTC</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.coinname %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %>btc</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= number_with_delimiter(now_coin) %>원</td>
+        <td class="mdl-data-table__cell--non-numeric deposit_price"><%= number_with_delimiter(mycoin.deposit)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric coin_price"><%= number_with_delimiter(now_deposit) %>원</td>
+        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_i - mycoin.deposit.to_i)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric value" ><%= value %>%</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
     <% @bithumb.each do |mycoin| %>
       <tr class="mdl-data-table__cell--non-numeric">
         <% 
@@ -81,6 +103,28 @@
           now_deposit = Coin.coin_price(mycoin.deposit,value)
         %>
         <td class="mdl-data-table__cell--non-numeric">BITHUMB</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.coinname %></td>
+        <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %>원</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= number_with_delimiter(now_coin) %>원</td>
+        <td class="mdl-data-table__cell--non-numeric deposit_price"><%= number_with_delimiter(mycoin.deposit)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric coin_price"><%= number_with_delimiter(now_deposit) %>원</td>
+        <td class="mdl-data-table__cell--non-numeric"><%=  number_with_delimiter(now_deposit.to_i - mycoin.deposit.to_i)%>원</td>
+        <td class="mdl-data-table__cell--non-numeric value" ><%= value %>%</td>
+        <td class="mdl-data-table__cell--non-numeric"><%= link_to 'Destroy', mycoin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% @coinone.each do |mycoin| %>
+      <tr class="mdl-data-table__cell--non-numeric">
+        <% 
+          if(mycoin.category=="coinone")
+          now_coin = Coin.coinone_getdata(mycoin.coinname)
+          end
+          # 가격 수익률
+          value = Coin.coin_result(mycoin.price,now_coin)
+          # 현재가격-입금가격
+          now_deposit = Coin.coin_price(mycoin.deposit,value)
+        %>
+        <td class="mdl-data-table__cell--non-numeric">COINONE</td>
         <td class="mdl-data-table__cell--non-numeric"><%= mycoin.coinname %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= mycoin.price %>원</td>
         <td class="mdl-data-table__cell--non-numeric"><%= number_with_delimiter(now_coin) %>원</td>
