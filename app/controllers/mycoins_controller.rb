@@ -89,6 +89,14 @@ class MycoinsController < ApplicationController
     end
   end
 
+  def yena
+    @coinnest = Mycoin.where(user_id: current_user.id,category: "coinnest")
+    @upbit = Mycoin.where(user_id: current_user.id,category: "upbit")
+    @upbit_btc = Mycoin.where(user_id: current_user.id,category: "upbit_btc")
+    @bithumb = Mycoin.where(user_id: current_user.id,category: "bithumb")
+    @coinone = Mycoin.where(user_id: current_user.id,category: "coinone")
+
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mycoin
