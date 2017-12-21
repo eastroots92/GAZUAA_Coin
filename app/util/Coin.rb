@@ -311,6 +311,7 @@ class Coin
         data = open(source).read()
         result = JSON.parse(data)
         return result["last"]
+
     end
 
     def self.coin_result(buy,now)

@@ -1,7 +1,14 @@
 require 'json'
+require 'nokogiri'
 require 'open-uri'
 #bittumb okay
-source = "https://api.bithumb.com/public/recent_transactions/etc"
+source = "https://coinmarketcap.com/"
 
-data = JSON.parse(open(source).read())
-puts data["data"][0]["price"]
+data = Nokogiri::HTML(open(source).read())
+
+coin = data.css("table#currencies tr td a.price")
+
+coin.each do |p|
+   puts "name :"+p.attr("href").split("/")[2]
+   puts p.text
+end
