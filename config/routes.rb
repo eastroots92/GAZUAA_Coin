@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'mycoins/storechecking'
   get 'office' => 'mycoins#yena'
   root 'home#index'
+
+  get 'home/test'
   resources :mycoins
   devise_for :users
  

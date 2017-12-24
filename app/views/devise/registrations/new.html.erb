@@ -7,13 +7,13 @@
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               
           <div class="input_box gz_margin">
-            <%= f.input :email, required: true, label: false,autofocus: true,:input_html => { :class => 'input_form',:placeholder => "email" } %>
-            <%= f.input :password, required: true,label: false, hint: ("#{@minimum_password_length} 자 이상 비밀번호를 입력해주세요" if @minimum_password_length),:input_html => { :class => 'input_form',:placeholder => "Password" }%>
-            <%= f.input :password_confirmation, label: false,required: true,:input_html => { :class => 'input_form',:placeholder => "password check"}  %>
+            <%= f.input :email, id:"form_email" , required: true, label: false,autofocus: true,:input_html => { :class => 'input_form',:placeholder => "email" } %>
+            <%= f.input :password, id:"form_pw", required: true,label: false, hint: ("#{@minimum_password_length} 자 이상 비밀번호를 입력해주세요" if @minimum_password_length),:input_html => { :class => 'input_form',:placeholder => "Password" }%>
+            <%= f.input :password_confirmation,id:"form_pwConf", label: false,required: true,:input_html => { :class => 'input_form',:placeholder => "password check"}  %>
           </div>
 
           <div class="form-actions gz_margin">
-            <%= f.button :submit, "Sign up",class: 'create_button' %>
+            <%= f.button :button, "Sign up",class: 'create_button' , id: 'signInForm_btn'%>
           </div>
         <% end %>
     </div>
@@ -31,6 +31,14 @@
       justify-content: center;
       flex-direction: column;
       align-items: center;
+    }
+
+    .hint{
+      display: block;
+    }
+
+    .login_form{
+      width: 100%
     }
 
 </style>
